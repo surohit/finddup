@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folder Comparison with Progress</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+            color: #333;
+        }
+        h2 {
+            color: #4caf50;
+        }
+        .folder-selector {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="file"] {
+            margin-top: 10px;
+        }
+        .compare-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .compare-btn:hover {
+            background-color: #45a049;
+        }
+        #progress-container {
+            display: none;
+            margin-top: 20px;
+        }
+        #progress-bar {
+            width: 0%;
+            height: 25px;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+            border-radius: 5px;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Folder Comparison Tool</h2>
+    
+    <div class="folder-selector">
+        <label for="folder1">Select Folder 1:</label>
+        <input type="file" id="folder1" webkitdirectory mozdirectory multiple>
+    </div>
+    
+    <div class="folder-selector">
+        <label for="folder2">Select Folder 2:</label>
+        <input type="file" id="folder2" webkitdirectory mozdirectory multiple>
+    </div>
+    
+    <button class="compare-btn" onclick="compareFolders()">Compare Folders</button>
+
+    <div id="progress-container">
+        <div id="progress-bar">0%</div>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        function updateProgressBar(percentComplete) {
+            const progressBar = document.getElementById('progress-bar');
+            progressBar.style.width = percentComplete + '%';
+            progressBar.textContent = percentComplete + '%';
+        }
+
+        function compareFolders() {
+            const folder1 = document.getElementById('folder1').files;
+            const folder2 = document.getElementById('folder2').files;
+
+            if (folder1.length === 0 || folder2.length === 0) {
+                document.getElementById('result').innerText = 'Please select both folders.';
+                return;
+            }
+
+            document.getElementById('progress-container').style.display = 'block';
+
+            const folder1Files = Array.from(folder1).map(file => file.name);
+            const folder2Files = Array.from(folder2).map(file => file.name);
+
+            let totalFiles = folder1Files.length + folder2Files.length;
+            let processedFiles = 0;
+
+            const duplicates = folder1Files.filter(file => folder2Files.includes(file));
+
+            // Simulate progress as files are compared
+            let progressInterval = setInterval(() => {
+                processedFiles += Math.ceil(totalFiles / 10);
+                if (processedFiles >= totalFiles) {
+                    processedFiles = totalFiles;
+                    clearInterval(progressInterval);
+                    displayResults(duplicates);
+                    alert("Comparison complete!");
+                }
+                let percentComplete = Math.floor((processedFiles / totalFiles) * 100);
+                updateProgressBar(percentComplete);
+            }, 500);
+        }
+
+        function displayResults(duplicates) {
+            let resultHTML = "<h3>Comparison Result:</h3>";
+            if (duplicates.length > 0) {
+                resultHTML += `<p>Found ${duplicates.length} duplicate files:</p><ul>`;
+                duplicates.forEach(file => {
+                    resultHTML += `<li>${file}</li>`;
+                });
+                resultHTML += "</ul>";
+            } else {
+                resultHTML += "<p>No duplicate files found.</p>";
+            }
+            document.getElementById('result').innerHTML = resultHTML;
+        }
+    </script>
+    
+</body>
+</html>
