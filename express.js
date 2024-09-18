@@ -1,42 +1,25 @@
-// Node.js Back-End
-
 const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
-const path = require('path');
-const archiver = require('archiver');
-
 const app = express();
-const upload = multer({ dest: 'uploads/' });
 
-// Serve static files (HTML, CSS, JS)
-app.use(express.static('public'));
+const upload = multer();
 
-// POST endpoint to handle folder uploads
-app.post('/compare', upload.fields([{ name: 'folder1' }, { name: 'folder2' }]), (req, res) => {
-    const folder1Files = req.files.folder1;
-    const folder2Files = req.files.folder2;
+app.post('/compare', upload.none(), (req, res) => {
+    const folder1 = req.body.folder1;
+    const folder2 = req.body.folder2;
 
-    const folder1Names = folder1Files.map(file => file.originalname);
-    const folder2Names = folder2Files.map(file => file.originalname);
+    // Perform comparison logic based on folder paths here
+    // For now, we assume we find some duplicate files
+    const duplicateFiles = ['file1.txt', 'file2.txt']; // Example
 
-    // Find duplicates
-    const duplicates = folder1Names.filter(name => folder2Names.includes(name));
-
-    // Save the comparison result
-    const resultFile = 'comparison_result.csv';
-    const csvContent = duplicates.join('\n');
-    fs.writeFileSync(resultFile, csvContent);
-
-    // Provide download link for CSV
-    res.download(resultFile, 'comparison_result.csv', () => {
-        // Clean up after download
-        fs.unlinkSync(resultFile);
-    });
+    // Return the comparison result as CSV
+    const csvContent = 'File Name\n' + duplicateFiles.join('\n');
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename="comparison_result.csv"');
+    res.send(csvContent);
 });
 
-// Start the server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+app.listen(3000, () => {
+    console.log('Server started on port 3000');
 });
