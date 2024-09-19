@@ -1,11 +1,35 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    margin: 0;
+    background-color: #f9f9f9;
     padding: 20px;
 }
 
 h1 {
-    color: #0070f3;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#progressContainer {
+    margin-top: 20px;
+    display: none;
+}
+
+#outputContainer {
+    margin-top: 20px;
+}
+
+progress {
+    width: 100%;
 }
