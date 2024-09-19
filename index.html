@@ -6,16 +6,15 @@
     <title>File Upload and Compare</title>
 </head>
 <body>
-    //<form id="uploadForm" enctype="multipart/form-data">
-      <form action="/upload" method="POST" enctype="multipart/form-data">
-        <label for="folder1">Choose Folder 1:</label>
-        <input type="file" id="folder1" name="folder1" webkitdirectory required multiple>
-
-        <label for="folder2">Choose Folder 2:</label>
-        <input type="file" id="folder2" name="folder2" webkitdirectory required multiple>
-
-        <button type="submit">Compare Folders</button>
-    </form>
+   <form action="/compare" method="POST" enctype="multipart/form-data">
+    <label for="folder1">Choose Folder 1:</label>
+    <input type="file" id="folder1" name="folder1" webkitdirectory required multiple>
+    
+    <label for="folder2">Choose Folder 2:</label>
+    <input type="file" id="folder2" name="folder2" webkitdirectory required multiple>
+    
+    <button type="submit">Upload & Compare</button>
+</form>
     <script src="scripts.js"></script>
 </body>
 </html>
