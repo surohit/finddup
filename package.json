@@ -2,7 +2,7 @@
   "name": "vercel-nodejs-app",
   "version": "1.0.0",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "build": "vercel build"
   },
   "dependencies": {
