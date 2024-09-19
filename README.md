@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Hello Node (blank)
 
 [Node.js](https://nodejs.org/en/about/) is a popular runtime that lets you run JavaScript on the server. This project uses the [Fastify](https://www.fastify.io/) framework and basic templating with [Handlebars](https://handlebarsjs.com/).
@@ -26,3 +27,7 @@ _Last updated: 14 August 2023_
 
 - Need more help? [Check out our Help Center](https://help.glitch.com/) for answers to any common questions.
 - Ready to make it official? [Become a paid Glitch member](https://glitch.com/pricing) to boost your app with private sharing, more storage and memory, domains and more.
+=======
+# finddup
+find duplicate files and folders
+>>>>>>> 5b34eb1bb20f8b18ca6301ca125772212c2966db
