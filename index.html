@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Upload</title>
+    <title>File Upload and Compare</title>
 </head>
 <body>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <label for="file">Choose file to upload:</label>
-        <input type="file" id="file" name="file" required>
-        <button type="submit">Upload</button>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label for="folder1">Choose Folder 1:</label>
+        <input type="file" id="folder1" name="folder1" webkitdirectory required multiple>
+
+        <label for="folder2">Choose Folder 2:</label>
+        <input type="file" id="folder2" name="folder2" webkitdirectory required multiple>
+
+        <button type="submit">Compare Folders</button>
     </form>
+    <script src="scripts.js"></script>
 </body>
 </html>
