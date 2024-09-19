@@ -1,17 +1,12 @@
 {
   "name": "vercel-nodejs-app",
   "version": "1.0.0",
-  "description": "A Node.js app deployed to Vercel",
   "scripts": {
-    "start": "node server.js",
-    "build": "echo 'Building the project...' && exit 0"
+    "start": "node index.js",
+    "build": "vercel build"
   },
   "dependencies": {
     "express": "^4.17.1",
     "formidable": "^2.0.1"
-  },
-  "devDependencies": {},
-  "engines": {
-    "node": ">=14.x"
   }
 }
