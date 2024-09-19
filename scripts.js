@@ -11,10 +11,10 @@ document.getElementById('uploadForm').addEventListener('submit', function (event
 
     const formData = new FormData();
     for (let i = 0; i < folder1.length; i++) {
-        formData.append('folder1', folder1[i].webkitRelativePath);
+        formData.append('folder1', folder1[i]);
     }
     for (let i = 0; i < folder2.length; i++) {
-        formData.append('folder2', folder2[i].webkitRelativePath);
+        formData.append('folder2', folder2[i]);
     }
 
     fetch('/compare', {
