@@ -17,10 +17,13 @@
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-mvp-node"
   },
-  "author": "Robbie",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch" ]
 }
-}
+
+
 
 
 <!-- 
