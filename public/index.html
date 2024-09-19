@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vercel Node.js App</title>
-    <link rel="stylesheet" href="/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folder Comparison Tool</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <h1>Welcome to Vercel Node.js App</h1>
-    <p>This is a simple app deployed using Vercel with Node.js.</p>
-    <p>Visit the API: <a href="/api/hello">/api/hello</a></p>
+  <h1>Compare Two Folders</h1>
+  <form id="compareForm" enctype="multipart/form-data">
+    <label for="folder1">Select Folder 1:</label>
+    <input type="file" id="folder1" name="folder1[]" webkitdirectory directory multiple required>
+
+    <label for="folder2">Select Folder 2:</label>
+    <input type="file" id="folder2" name="folder2[]" webkitdirectory directory multiple required>
+
+    <button type="submit">Compare Folders</button>
+  </form>
+
+  <div id="progressContainer">
+    <p id="progressText">Progress: 0%</p>
+    <progress id="progressBar" value="0" max="100"></progress>
+  </div>
+
+  <div id="outputContainer" style="display:none;">
+    <h2>Comparison Complete</h2>
+    <a id="downloadLink" href="#">Download CSV</a>
+  </div>
+
+  <script src="/scripts.js"></script>
 </body>
 </html>
