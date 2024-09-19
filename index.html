@@ -6,37 +6,17 @@
     <title>Folder Comparison</title>
 </head>
 <body>
-    <h1>Upload Folders for Comparison</h1>
+    <h1>Select Folders for Comparison</h1>
     <form id="uploadForm" enctype="multipart/form-data">
         <label>Select Folder 1:</label>
-        <input type="file" name="folder1" multiple webkitdirectory><br>
+        <input type="file" id="folder1" webkitdirectory directory><br>
         <label>Select Folder 2:</label>
-        <input type="file" name="folder2" multiple webkitdirectory><br>
+        <input type="file" id="folder2" webkitdirectory directory><br>
         <button type="submit">Compare</button>
     </form>
 
-    <script>
-        document.getElementById('uploadForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            
-            const formData = new FormData(this);
-            
-            fetch('/compare', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.blob())
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'comparison_result.csv';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    </script>
+    <div id="result"></div>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
